@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { PortfolioItem } from '../types';
 import { ArrowRight, Eye, Sparkles, X, MessageCircle } from 'lucide-react';
+import { resolveImageUrl, handleImageError } from '../utils/imageHelper';
 
 export const PortfolioPage: React.FC = () => {
   const { language, t, portfolio, services, addToCart, navigateTo } = useApp();
@@ -81,9 +82,10 @@ export const PortfolioPage: React.FC = () => {
                 onClick={() => setActiveModalItem(item)}
               >
                 <img
-                  src={item.imageUrl}
+                  src={resolveImageUrl(item.imageUrl)}
                   alt={item.title}
                   referrerPolicy="no-referrer"
+                  onError={(e) => handleImageError(e, '/images/hero_design_showcase.jpg')}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -162,9 +164,10 @@ export const PortfolioPage: React.FC = () => {
 
               <div className="relative aspect-[16/10] bg-black">
                 <img
-                  src={activeModalItem.imageUrl}
+                  src={resolveImageUrl(activeModalItem.imageUrl)}
                   alt={activeModalItem.title}
                   referrerPolicy="no-referrer"
+                  onError={(e) => handleImageError(e, '/images/hero_design_showcase.jpg')}
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -16,6 +16,7 @@ import {
   ChevronUp,
   Award,
 } from 'lucide-react';
+import { resolveImageUrl, handleImageError } from '../utils/imageHelper';
 
 export const HomePage: React.FC = () => {
   const {
@@ -186,9 +187,10 @@ export const HomePage: React.FC = () => {
               <div className="relative mx-auto rounded-2xl p-1 bg-gradient-to-b from-[#D4AF37]/40 to-transparent shadow-2xl">
                 <div className="relative rounded-xl overflow-hidden bg-[#111111] border border-[#222]">
                   <img
-                    src="/src/assets/images/hero_design_showcase_1792143155449.jpg"
-                    alt="K.Company & Designer Showcase"
+                    src="/images/hero_design_showcase.jpg"
+                    alt="K.Company & Designer Luxury Design Portfolio Showcase"
                     referrerPolicy="no-referrer"
+                    onError={(e) => handleImageError(e, '/images/hero_design_showcase.jpg')}
                     className="w-full h-auto object-cover transform hover:scale-[1.02] transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -445,9 +447,10 @@ export const HomePage: React.FC = () => {
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-black">
                   <img
-                    src={item.imageUrl}
+                    src={resolveImageUrl(item.imageUrl)}
                     alt={item.title}
                     referrerPolicy="no-referrer"
+                    onError={(e) => handleImageError(e, '/images/hero_design_showcase.jpg')}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />

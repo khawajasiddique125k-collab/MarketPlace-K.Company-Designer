@@ -56,7 +56,18 @@ npm run build
 
 ## 4. Hostinger & Free Hosting Deployment Guide
 
-### Option A: Static Deployment (Hostinger / Netlify / Vercel / Cloudflare Pages) — 100% Free
+### Option A: Cloudflare Pages Deployment (Direct Git Integration) — Recommended
+1. In the **Cloudflare Dashboard**, navigate to **Workers & Pages** -> **Create application** -> **Pages** -> **Connect to Git**.
+2. Select your repository: `K.Company & Designer`.
+3. Set the build configurations:
+   - **Framework preset:** `Vite`
+   - **Build command:** `npm run build`
+   - **Build output directory:** `dist`
+   - **Node.js version:** `18` or `20` (default)
+4. Click **Save and Deploy**.
+5. All images are committed in `/public/images/` and automatically emitted to `/dist/images/` on every commit. Cloudflare Pages SPA client routing is automatically managed by `/public/_redirects`.
+
+### Option B: Hostinger hPanel Deployment
 1. Run `npm run build`.
 2. The generated output files will be in the `/dist` directory.
 3. In your **Hostinger hPanel**:

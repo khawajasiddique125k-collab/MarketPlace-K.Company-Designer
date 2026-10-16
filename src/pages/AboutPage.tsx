@@ -24,8 +24,18 @@ export const AboutPage: React.FC = () => {
         {/* Founder Bio Card */}
         <div className="bg-[#111111] border border-[#D4AF37]/30 rounded-2xl p-6 sm:p-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-4 text-center">
-            <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-[#1F1B0F] to-[#0A0A0A] border-2 border-[#D4AF37] flex items-center justify-center mx-auto shadow-2xl mb-4">
-              <span className="font-cinzel font-black text-4xl text-[#F4D675]">KCD</span>
+            <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-[#1F1B0F] to-[#0A0A0A] border-2 border-[#D4AF37] flex items-center justify-center mx-auto shadow-2xl mb-4 overflow-hidden">
+              <img
+                src="/images/logo.svg"
+                alt="K.Company & Designer Emblem"
+                className="w-full h-full object-contain p-4"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const fallback = e.currentTarget.parentElement?.querySelector('.about-logo-fallback');
+                  if (fallback) (fallback as HTMLElement).style.display = 'flex';
+                }}
+              />
+              <span className="about-logo-fallback hidden font-cinzel font-black text-4xl text-[#F4D675]">KCD</span>
             </div>
             <h3 className="text-lg font-bold text-[#F8F7F3]">
               {t.about.ownerName}

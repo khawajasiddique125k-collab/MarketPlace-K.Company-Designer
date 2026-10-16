@@ -18,6 +18,7 @@ import {
   Trash2,
   ExternalLink,
 } from 'lucide-react';
+import { resolveImageUrl, handleImageError } from '../utils/imageHelper';
 
 export const AdminPage: React.FC = () => {
   const {
@@ -59,7 +60,7 @@ export const AdminPage: React.FC = () => {
   const [newPortTitle, setNewPortTitle] = useState('');
   const [newPortCategory, setNewPortCategory] = useState('Logo & Branding');
   const [newPortDesc, setNewPortDesc] = useState('');
-  const [newPortImage, setNewPortImage] = useState('/src/assets/images/portfolio_branding_1792143156213.jpg');
+  const [newPortImage, setNewPortImage] = useState('/images/portfolio_branding.jpg');
 
   // Coupon configuration state for KCD125
   const kcd125 = coupons.find((c) => c.code === 'KCD125');
@@ -616,8 +617,9 @@ export const AdminPage: React.FC = () => {
                 {portfolio.map((item) => (
                   <div key={item.id} className="bg-[#121212] border border-[#222] rounded-xl overflow-hidden p-3 flex gap-3">
                     <img
-                      src={item.imageUrl}
+                      src={resolveImageUrl(item.imageUrl)}
                       alt={item.title}
+                      onError={(e) => handleImageError(e, '/images/portfolio_branding.jpg')}
                       className="w-20 h-20 object-cover rounded-lg bg-black shrink-0"
                     />
                     <div className="flex-1 flex flex-col justify-between">

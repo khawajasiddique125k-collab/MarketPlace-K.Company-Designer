@@ -40,8 +40,18 @@ export const Navbar: React.FC = () => {
             className="flex items-center gap-3 text-left shrink-0 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
             aria-label="K.Company & Designer Home"
           >
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#1E1E1E] to-[#0A0A0A] border border-[#D4AF37]/40 flex items-center justify-center shadow-sm group-hover:border-[#D4AF37] transition-colors">
-              <span className="font-cinzel font-bold text-lg text-[#F4D675]">K</span>
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#1E1E1E] to-[#0A0A0A] border border-[#D4AF37]/40 flex items-center justify-center shadow-sm group-hover:border-[#D4AF37] transition-colors overflow-hidden">
+              <img
+                src="/images/logo.svg"
+                alt="K.Company & Designer Logo"
+                className="w-full h-full object-contain p-1"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const fallback = e.currentTarget.parentElement?.querySelector('.logo-fallback');
+                  if (fallback) (fallback as HTMLElement).style.display = 'flex';
+                }}
+              />
+              <span className="logo-fallback hidden font-cinzel font-bold text-lg text-[#F4D675]">K</span>
             </div>
             <div className="flex flex-col">
               <span className="font-cinzel font-bold text-base sm:text-lg tracking-wider text-[#F8F7F3] group-hover:text-[#F4D675] transition-colors whitespace-nowrap">

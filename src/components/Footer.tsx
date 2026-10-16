@@ -17,8 +17,18 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand & Bio */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-[#141414] border border-[#D4AF37]/40 flex items-center justify-center">
-                <span className="font-cinzel font-bold text-base text-[#F4D675]">K</span>
+              <div className="w-9 h-9 rounded-lg bg-[#141414] border border-[#D4AF37]/40 flex items-center justify-center overflow-hidden">
+                <img
+                  src="/images/logo.svg"
+                  alt="K.Company & Designer Logo"
+                  className="w-full h-full object-contain p-1"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const fallback = e.currentTarget.parentElement?.querySelector('.logo-fallback');
+                    if (fallback) (fallback as HTMLElement).style.display = 'flex';
+                  }}
+                />
+                <span className="logo-fallback hidden font-cinzel font-bold text-base text-[#F4D675]">K</span>
               </div>
               <span className="font-cinzel font-bold text-lg text-[#F8F7F3] tracking-wider">
                 K.COMPANY & DESIGNER

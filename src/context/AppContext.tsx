@@ -14,6 +14,7 @@ import {
 import { INITIAL_SERVICES } from '../data/servicesData';
 import { INITIAL_PORTFOLIO } from '../data/portfolioData';
 import { translations } from '../data/translations';
+import { resolveImageUrl } from '../utils/imageHelper';
 
 interface AppContextType {
   language: Language;
@@ -485,7 +486,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Portfolio State
   const [portfolio, setPortfolio] = useState<PortfolioItem[]>(() => {
     const saved = localStorage.getItem('kcd_portfolio');
-    return saved ? JSON.parse(saved) : INITIAL_PORTFOLIO;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed.map((item: PortfolioItem) => ({
+            ...item,
+            imageUrl: resolveImageUrl(item.imageUrl),
+          }));
+        }
+      } catch (e) {
+        return INITIAL_PORTFOLIO;
+      }
+    }
+    return INITIAL_PORTFOLIO;
   });
 
   const addPortfolioItem = (item: Omit<PortfolioItem, 'id'>) => {
