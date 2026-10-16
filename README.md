@@ -64,8 +64,7 @@ npm run build
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
    - **Node.js version:** `18` or `20` (default)
-4. Click **Save and Deploy**.
-5. All images are committed in `/public/images/` and automatically emitted to `/dist/images/` on every commit. Cloudflare Pages SPA client routing is automatically managed by `/public/_redirects`.
+5. All images are committed in `/public/images/` and automatically emitted to `/dist/images/` on every commit. Cloudflare Workers and Pages SPA client routing is natively handled by `"not_found_handling": "single-page-application"` in `wrangler.jsonc`. No `_redirects` file is needed or used.
 
 ### Option B: Hostinger hPanel Deployment
 1. Run `npm run build`.
